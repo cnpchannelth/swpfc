@@ -1,0 +1,205 @@
+@import "tailwindcss";
+
+@theme {
+  /* Club Colors from Logo */
+  --color-primary: #C41E3A;
+  --color-primary-dark: #9B1830;
+  --color-primary-light: #E8334F;
+  --color-secondary: #1E4D8C;
+  --color-secondary-dark: #163A6A;
+  --color-secondary-light: #2A6BB5;
+
+  /* Dark Theme */
+  --color-dark: #0D1117;
+  --color-surface: #161B22;
+  --color-surface-light: #21262D;
+  --color-border: #30363D;
+
+  /* Text */
+  --color-text: #F0F6FC;
+  --color-text-muted: #8B949E;
+
+  /* Status */
+  --color-success: #2EA043;
+  --color-warning: #D29922;
+  --color-danger: #C41E3A;
+
+  /* Fonts */
+  --font-sans: "Noto Sans Thai", "Noto Sans", sans-serif;
+  --font-display: "Oswald", "Barlow Condensed", sans-serif;
+}
+
+/* Base Styles */
+body {
+  background-color: var(--color-dark);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-surface-light);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-border);
+}
+
+/* Angled section divider */
+.angle-divider {
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+}
+.angle-divider-reverse {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 85%);
+}
+
+/* ============================================================
+   ANIMATIONS & EFFECTS
+   ============================================================ */
+
+/* Fade In Up */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Shimmer (skeleton loading) */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+/* Logo pulse glow */
+@keyframes pulseGlow {
+  0%, 100% { filter: drop-shadow(0 0 8px rgba(196, 30, 58, 0.35)); }
+  50%       { filter: drop-shadow(0 0 22px rgba(196, 30, 58, 0.85)); }
+}
+
+/* Hero gradient shift */
+@keyframes gradientShift {
+  0%, 100% { background-position: 0%   50%; }
+  50%       { background-position: 100% 50%; }
+}
+
+/* Moving diagonal stripes */
+@keyframes stripeMove {
+  from { background-position-x: 0; }
+  to   { background-position-x: 56px; }
+}
+
+/* Count-up tick */
+@keyframes countTick {
+  from { opacity: 0; transform: translateY(10px) scale(0.85); }
+  to   { opacity: 1; transform: translateY(0)   scale(1); }
+}
+
+/* Toast slide in / out */
+@keyframes toastIn {
+  from { opacity: 0; transform: translateX(110%); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes toastOut {
+  from { opacity: 1; transform: translateX(0); }
+  to   { opacity: 0; transform: translateX(110%); }
+}
+
+/* Scroll-to-top pop in */
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.7); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* ============================================================
+   UTILITY CLASSES
+   ============================================================ */
+
+/* Skeleton loader */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-surface-light) 25%,
+    var(--color-border)        50%,
+    var(--color-surface-light) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+/* Logo glow */
+.logo-glow {
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+/* Hero gradient background */
+.hero-gradient {
+  background: linear-gradient(135deg, #163A6A, #1E4D8C, #0D1117, #1a3060);
+  background-size: 400% 400%;
+  animation: gradientShift 12s ease infinite;
+}
+
+/* Moving stripe overlay (place on absolutely-positioned child) */
+.hero-stripes {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 14px,
+    rgba(196, 30, 58, 0.055) 14px,
+    rgba(196, 30, 58, 0.055) 28px
+  );
+  animation: stripeMove 5s linear infinite;
+}
+
+/* Fade-in up animation */
+.animate-fade-in-up {
+  animation: fadeInUp 0.55s ease-out both;
+}
+
+/* Scroll-to-top button pop */
+.animate-pop-in {
+  animation: popIn 0.25s ease-out both;
+}
+
+/* Toast */
+.toast-enter { animation: toastIn  0.3s ease both; }
+.toast-leave { animation: toastOut 0.3s ease both; }
+
+/* 3D Flip Card */
+.flip-card {
+  perspective: 1000px;
+}
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.flip-card-back {
+  transform: rotateY(180deg);
+}
+
+/* Stat number count-up tick */
+.count-tick {
+  animation: countTick 0.4s ease both;
+}
+
+/* Angled bottom clip on hero */
+.hero-clip {
+  clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
+}
