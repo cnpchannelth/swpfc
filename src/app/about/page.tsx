@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { getStaff } from "@/lib/data-store";
 import { CLUB } from "@/lib/constants";
+import StaffPhoto from "@/components/ui/StaffPhoto";
 
 export default async function AboutPage() {
   const staff = await getStaff();
@@ -101,9 +102,7 @@ export default async function AboutPage() {
                   <div className="w-20 h-20 rounded-full mx-auto mb-3 overflow-hidden"
                     style={{ background: "rgba(196,30,58,0.1)", border: "2px solid rgba(196,30,58,0.2)" }}>
                     {member.photoUrl ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img src={member.photoUrl} alt={member.nameTh} className="w-full h-full object-cover object-top"
-                        onError={e => { e.currentTarget.style.display = "none"; }} />
+                      <StaffPhoto src={member.photoUrl} alt={member.nameTh} />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center">
                         <svg className="w-10 h-10 opacity-20" fill="white" viewBox="0 0 24 24">
