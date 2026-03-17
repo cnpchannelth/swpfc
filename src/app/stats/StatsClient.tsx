@@ -223,15 +223,24 @@ export default function StatsClient({
                       boxShadow: `0 0 12px ${posColor}20`,
                     }}>
                     {stat.player.photoUrl ? (
-                      <Image src={stat.player.photoUrl} alt={stat.player.nameTh}
-                        width={56} height={56} className="object-cover w-full h-full object-top" />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center">
-                        <span className="font-extrabold text-lg" style={{ fontFamily: "var(--font-display)", color: posColor }}>
-                          {stat.player.jerseyNumber}
-                        </span>
-                      </div>
-                    )}
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={stat.player.photoUrl}
+                        alt={stat.player.nameTh}
+                        className="object-cover w-full h-full object-top"
+                        onError={(e) => {
+                          e.currentTarget.style.display = "none";
+                          const fallback = e.currentTarget.nextElementSibling as HTMLElement;
+                          if (fallback) fallback.style.display = "flex";
+                        }}
+                      />
+                    ) : null}
+                    <div className="w-full h-full items-center justify-center"
+                      style={{ display: stat.player.photoUrl ? "none" : "flex" }}>
+                      <span className="font-extrabold text-lg" style={{ fontFamily: "var(--font-display)", color: posColor }}>
+                        {stat.player.jerseyNumber}
+                      </span>
+                    </div>
                     {/* Position badge */}
                     <div className="absolute bottom-0 right-0 px-1 text-[9px] font-extrabold rounded-tl"
                       style={{ background: posColor, color: "white", fontFamily: "var(--font-display)" }}>
