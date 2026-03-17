@@ -51,6 +51,9 @@ function PlayerModal({
     setLoading(true);
     const formData = new FormData(formRef.current);
     formData.set("photoUrl", photoUrl);
+    // fix: hidden input always sends "false" first; override with actual checkbox state
+    const checkbox = formRef.current.querySelector<HTMLInputElement>("#isActive");
+    formData.set("isActive", checkbox?.checked ? "true" : "false");
     await onSave(formData);
     setLoading(false);
     onClose();
