@@ -27,6 +27,7 @@ function PlayerModal({
   const formRef = useRef<HTMLFormElement>(null);
   const [loading, setLoading] = useState(false);
   const [photoPreview, setPhotoPreview] = useState<string | null>(player?.photoUrl ?? null);
+  const [photoUrl, setPhotoUrl] = useState<string>(player?.photoUrl ?? "");
   const [uploading, setUploading] = useState(false);
 
   async function handlePhotoChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -39,9 +40,7 @@ function PlayerModal({
     const json = await res.json() as { url?: string };
     if (json.url) {
       setPhotoPreview(json.url);
-      // inject into hidden input
-      const hidden = formRef.current?.querySelector<HTMLInputElement>('input[name="photoUrl"]');
-      if (hidden) hidden.value = json.url;
+      setPhotoUrl(json.url);
     }
     setUploading(false);
   }
@@ -50,7 +49,9 @@ function PlayerModal({
     e.preventDefault();
     if (!formRef.current) return;
     setLoading(true);
-    await onSave(new FormData(formRef.current));
+    const formData = new FormData(formRef.current);
+    formData.set("photoUrl", photoUrl);
+    await onSave(formData);
     setLoading(false);
     onClose();
   }
