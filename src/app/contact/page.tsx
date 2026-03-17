@@ -84,20 +84,16 @@ export default function ContactPage() {
               <p className="text-xs font-bold tracking-wider uppercase mb-3" style={{ color: "rgba(255,255,255,0.3)" }}>โซเชียลมีเดีย</p>
               <div className="flex gap-3">
                 <a href={CLUB.facebook} target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold transition-all duration-300"
-                  style={{ background: "rgba(24,119,242,0.15)", border: "1px solid rgba(24,119,242,0.3)", color: "#60a5fa" }}
-                  onMouseEnter={e => { e.currentTarget.style.background = "rgba(24,119,242,0.25)"; e.currentTarget.style.boxShadow = "0 0 20px rgba(24,119,242,0.2)"; }}
-                  onMouseLeave={e => { e.currentTarget.style.background = "rgba(24,119,242,0.15)"; e.currentTarget.style.boxShadow = "none"; }}>
+                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold transition-all duration-300 hover:opacity-80"
+                  style={{ background: "rgba(24,119,242,0.15)", border: "1px solid rgba(24,119,242,0.3)", color: "#60a5fa" }}>
                   <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                   </svg>
                   Facebook
                 </a>
                 <a href="#"
-                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold transition-all duration-300"
-                  style={{ background: "rgba(0,185,0,0.12)", border: "1px solid rgba(0,185,0,0.25)", color: "#4ade80" }}
-                  onMouseEnter={e => { e.currentTarget.style.background = "rgba(0,185,0,0.2)"; e.currentTarget.style.boxShadow = "0 0 20px rgba(0,185,0,0.15)"; }}
-                  onMouseLeave={e => { e.currentTarget.style.background = "rgba(0,185,0,0.12)"; e.currentTarget.style.boxShadow = "none"; }}>
+                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold transition-all duration-300 hover:opacity-80"
+                  style={{ background: "rgba(0,185,0,0.12)", border: "1px solid rgba(0,185,0,0.25)", color: "#4ade80" }}>
                   LINE
                 </a>
               </div>

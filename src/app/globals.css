@@ -199,6 +199,13 @@ body {
   animation: countTick 0.4s ease both;
 }
 
+/* Staff card hover (Server Component safe) */
+.staff-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(196,30,58,0.35) !important;
+  box-shadow: 0 12px 32px rgba(196,30,58,0.15);
+}
+
 /* ── FIFA / FUT Effects ── */
 
 /* Neon flicker */

@@ -92,20 +92,11 @@ export default async function AboutPage() {
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
               {staff.map((member) => (
-                <div key={member.id} className="rounded-2xl p-4 text-center group transition-all duration-300 card-shine"
+                <div key={member.id} className="rounded-2xl p-4 text-center card-shine staff-card"
                   style={{
                     background: "rgba(255,255,255,0.03)",
                     border: "1px solid rgba(255,255,255,0.07)",
-                  }}
-                  onMouseEnter={e => {
-                    e.currentTarget.style.border = "1px solid rgba(196,30,58,0.35)";
-                    e.currentTarget.style.transform = "translateY(-4px)";
-                    e.currentTarget.style.boxShadow = "0 12px 32px rgba(196,30,58,0.15)";
-                  }}
-                  onMouseLeave={e => {
-                    e.currentTarget.style.border = "1px solid rgba(255,255,255,0.07)";
-                    e.currentTarget.style.transform = "translateY(0)";
-                    e.currentTarget.style.boxShadow = "none";
+                    transition: "transform 0.3s, box-shadow 0.3s, border-color 0.3s",
                   }}>
                   <div className="w-20 h-20 rounded-full mx-auto mb-3 overflow-hidden"
                     style={{ background: "rgba(196,30,58,0.1)", border: "2px solid rgba(196,30,58,0.2)" }}>
