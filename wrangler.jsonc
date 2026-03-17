@@ -1,0 +1,32 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "police-swp-fc",
+  "compatibility_date": "2025-09-27",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": {
+    "enabled": true
+  },
+
+  // D1 database for data storage
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "police-swp-fc-db",
+      "database_id": "ce0e0520-0f5a-4ee6-a3cd-d19cd8bef0ec"
+    }
+  ],
+
+  // R2 buckets
+  "r2_buckets": [
+    {
+      // For user-uploaded images (player photos, sponsor logos, etc.)
+      "binding": "R2",
+      "bucket_name": "police-swp-fc-uploads"
+    },
+    {
+      // For OpenNext incremental cache
+      "binding": "NEXT_INC_CACHE_R2_BUCKET",
+      "bucket_name": "police-swp-fc-opennext-cache"
+    }
+  ]
+}

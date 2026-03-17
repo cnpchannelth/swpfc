@@ -1,7 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getRequestContext } from "@cloudflare/next-on-pages";
-
-export const runtime = "edge";
+import { getCloudflareContext } from "@opennextjs/cloudflare";
 
 export async function GET(
   _req: NextRequest,
@@ -11,7 +9,7 @@ export async function GET(
   const safe = filename.replace(/[/\\]/g, "");
 
   try {
-    const { env } = getRequestContext();
+    const { env } = getCloudflareContext();
     const r2 = (env as unknown as { R2: R2Bucket }).R2;
 
     const object = await r2.get(safe);

@@ -1,4 +1,4 @@
-import { getRequestContext } from "@cloudflare/next-on-pages";
+import { getCloudflareContext } from "@opennextjs/cloudflare";
 import type { Player, Match, NewsArticle, PlayerSeasonStats, LeagueStanding, Staff, Sponsor } from "@/types";
 import {
   players as defaultPlayers,

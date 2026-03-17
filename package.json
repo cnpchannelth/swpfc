@@ -8,12 +8,12 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "build:cf": "npx @cloudflare/next-on-pages",
-    "preview:cf": "npm run build:cf && wrangler pages dev .vercel/output/static",
-    "deploy:cf": "npm run build:cf && wrangler pages deploy .vercel/output/static --project-name=police-swp-fc",
+    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
     "db:migrate": "wrangler d1 execute police-swp-fc-db --file=./schema.sql",
     "db:migrate:remote": "wrangler d1 execute police-swp-fc-db --remote --file=./schema.sql",
-    "r2:create": "wrangler r2 bucket create police-swp-fc-uploads",
+    "r2:create:uploads": "wrangler r2 bucket create police-swp-fc-uploads",
+    "r2:create:cache": "wrangler r2 bucket create police-swp-fc-opennext-cache",
     "cf:types": "wrangler types"
   },
   "keywords": [],
@@ -28,8 +28,8 @@
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "@cloudflare/next-on-pages": "^1.13.12",
     "@cloudflare/workers-types": "^4.20250620.0",
+    "@opennextjs/cloudflare": "^1.17.1",
     "@tailwindcss/postcss": "^4.2.1",
     "@types/node": "^20.0.0",
     "@types/react": "^19.0.0",
@@ -39,6 +39,6 @@
     "postcss": "^8.5.8",
     "tailwindcss": "^4.2.1",
     "typescript": "^5.0.0",
-    "wrangler": "^3.114.4"
+    "wrangler": "^4.0.0"
   }
 }
