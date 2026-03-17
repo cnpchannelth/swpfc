@@ -14,7 +14,7 @@ import {
 
 async function readStore<T>(key: string, fallback: T): Promise<T> {
   try {
-    const { env } = getRequestContext();
+    const { env } = getCloudflareContext();
     const db = (env as unknown as { DB: D1Database }).DB;
     const row = await db
       .prepare("SELECT value FROM store WHERE key = ?")
@@ -32,7 +32,7 @@ async function readStore<T>(key: string, fallback: T): Promise<T> {
 }
 
 async function writeStore(key: string, data: unknown): Promise<void> {
-  const { env } = getRequestContext();
+  const { env } = getCloudflareContext();
   const db = (env as unknown as { DB: D1Database }).DB;
   await db
     .prepare("INSERT INTO store (key, value) VALUES (?, ?) ON CONFLICT(key) DO UPDATE SET value = excluded.value")
