@@ -2,7 +2,7 @@
 import { getMatches, getPlayerStats, getStandings } from "@/lib/data-store";
 import StatsClient from "./StatsClient";
 
-export const runtime = "edge";
+
 
 export default async function StatsPage() {
   const [matches, playerStats, standings] = await Promise.all([

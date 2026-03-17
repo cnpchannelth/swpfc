@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { getPlayers, getMatches, getNews } from "@/lib/data-store";
 
-export const runtime = "edge";
+
 
 export default async function AdminDashboardPage() {
   const [players, matches, news] = await Promise.all([getPlayers(), getMatches(), getNews()]);

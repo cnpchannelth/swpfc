@@ -5,7 +5,7 @@ import { formatThaiDate } from "@/lib/utils";
 import { NEWS_CATEGORIES } from "@/lib/constants";
 import ShareButtons from "@/components/news/ShareButtons";
 
-export const runtime = "edge";
+
 
 interface Props {
   params: Promise<{ slug: string }>;

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { CLUB } from "@/lib/constants";
 import { getMatches } from "@/lib/data-store";
 
-export const runtime = "edge";
+
 
 export default async function HeroBanner() {
   const matches = await getMatches();

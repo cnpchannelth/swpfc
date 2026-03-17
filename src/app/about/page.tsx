@@ -2,7 +2,7 @@ import Image from "next/image";
 import { getStaff } from "@/lib/data-store";
 import { CLUB } from "@/lib/constants";
 
-export const runtime = "edge";
+
 
 export default async function AboutPage() {
   const staff = await getStaff();

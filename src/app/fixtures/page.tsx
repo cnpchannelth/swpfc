@@ -2,7 +2,7 @@
 import { getMatches, getStandings } from "@/lib/data-store";
 import FixturesClient from "./FixturesClient";
 
-export const runtime = "edge";
+
 
 export default async function FixturesPage() {
   const [matches, standings] = await Promise.all([getMatches(), getStandings()]);

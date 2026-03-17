@@ -5,7 +5,7 @@ import { formatThaiDate, formatThaiTime } from "@/lib/utils";
 import { CLUB } from "@/lib/constants";
 import NextMatchCountdown from "./NextMatchCountdown";
 
-export const runtime = "edge";
+
 
 export default async function NextMatchCard() {
   const matches = await getMatches();

@@ -1,7 +1,7 @@
 import { getSponsors } from "@/lib/data-store";
 import SponsorsAdminClient from "./SponsorsAdminClient";
 
-export const runtime = "edge";
+
 
 export default async function AdminSponsorsPage() {
   const sponsors = await getSponsors();

@@ -5,7 +5,7 @@ import { formatThaiDateShort } from "@/lib/utils";
 import { CLUB } from "@/lib/constants";
 import FadeIn from "@/components/ui/FadeIn";
 
-export const runtime = "edge";
+
 
 export default async function LatestResults() {
   const matches = await getMatches();

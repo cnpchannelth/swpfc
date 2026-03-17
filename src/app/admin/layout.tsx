@@ -3,7 +3,7 @@ import { ToastProvider } from "@/components/ui/Toast";
 import Link from "next/link";
 import { isAuthenticated } from "@/lib/auth";
 
-export const runtime = "edge";
+
 
 const ADMIN_NAV = [
   {

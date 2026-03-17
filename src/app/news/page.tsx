@@ -3,7 +3,7 @@ import { getNews } from "@/lib/data-store";
 import { formatThaiDate } from "@/lib/utils";
 import { NEWS_CATEGORIES } from "@/lib/constants";
 
-export const runtime = "edge";
+
 
 export default async function NewsPage() {
   const news = await getNews();

@@ -5,7 +5,7 @@ import { getPlayers, getPlayerStats } from "@/lib/data-store";
 import { POSITIONS } from "@/lib/constants";
 import { formatThaiDate } from "@/lib/utils";
 
-export const runtime = "edge";
+
 
 interface Props {
   params: Promise<{ id: string }>;

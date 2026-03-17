@@ -2,7 +2,7 @@
 import { getPlayers } from "@/lib/data-store";
 import SquadClient from "./SquadClient";
 
-export const runtime = "edge";
+
 
 export default async function SquadPage() {
   const players = await getPlayers();

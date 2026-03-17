@@ -2,7 +2,7 @@ import { getStandings, getMatches } from "@/lib/data-store";
 import AnimatedStats from "./AnimatedStats";
 import type { Match } from "@/types";
 
-export const runtime = "edge";
+
 
 type StreakResult = "W" | "D" | "L";
 
