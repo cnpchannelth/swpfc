@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import type { Player, Match, NewsArticle } from "@/types";
+import type { Player, Match, NewsArticle, PlayerSeasonStats } from "@/types";
 import {
   players as defaultPlayers,
   matches as defaultMatches,
@@ -64,8 +64,15 @@ export function saveNews(data: NewsArticle[]) {
   writeFile("news.json", data);
 }
 
+// ===== PLAYER STATS =====
+export function getPlayerStats(): PlayerSeasonStats[] {
+  return readFile<PlayerSeasonStats[]>("player_stats.json", defaultPlayerStats);
+}
+export function savePlayerStats(data: PlayerSeasonStats[]) {
+  writeFile("player_stats.json", data);
+}
+
 // ===== READ-ONLY (sample data) =====
-export { defaultPlayerStats as playerStats };
 export { defaultStandings as standings };
 export { defaultStaff as staff };
 export { defaultSponsors as sponsors };

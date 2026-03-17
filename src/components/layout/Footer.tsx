@@ -18,7 +18,7 @@ export default function Footer() {
                 className="rounded"
               />
               <div>
-                <h3 className="font-bold text-white">{CLUB.name}</h3>
+                <h3 className="font-bold text-text">{CLUB.name}</h3>
                 <p className="text-sm text-text-muted">{CLUB.nameEn}</p>
               </div>
             </div>
@@ -30,7 +30,7 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-bold text-white mb-4">ลิงก์ด่วน</h4>
+            <h4 className="font-bold text-text mb-4">ลิงก์ด่วน</h4>
             <div className="flex flex-col gap-2">
               {NAV_ITEMS.map((item) => (
                 <Link
@@ -46,7 +46,7 @@ export default function Footer() {
 
           {/* Contact & Social */}
           <div>
-            <h4 className="font-bold text-white mb-4">ติดต่อเรา</h4>
+            <h4 className="font-bold text-text mb-4">ติดต่อเรา</h4>
             <div className="flex flex-col gap-2 text-sm text-text-muted">
               <p>สนามกีฬาอำเภอสวรรคโลก</p>
               <p>อ.สวรรคโลก จ.สุโขทัย 64110</p>

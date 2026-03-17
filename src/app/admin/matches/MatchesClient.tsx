@@ -49,10 +49,10 @@ function MatchModal({
     <div className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4">
       <div className="bg-surface border border-border rounded-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
         <div className="flex items-center justify-between p-5 border-b border-border">
-          <h2 className="text-lg font-bold text-white">
+          <h2 className="text-lg font-bold text-text">
             {match ? "แก้ไขแมตช์" : "เพิ่มแมตช์ใหม่"}
           </h2>
-          <button onClick={onClose} className="text-text-muted hover:text-white transition-colors">
+          <button onClick={onClose} className="text-text-muted hover:text-text transition-colors">
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
@@ -78,7 +78,7 @@ function MatchModal({
                     }
                     className="accent-primary"
                   />
-                  <span className="text-sm text-white">{opt.label}</span>
+                  <span className="text-sm text-text">{opt.label}</span>
                 </label>
               ))}
             </div>
@@ -89,14 +89,14 @@ function MatchModal({
             <label className="block text-xs font-medium text-text-muted mb-1">ชื่อทีมคู่แข่ง *</label>
             <input type="text" name="opponentName" defaultValue={opponentName} required
               placeholder="เช่น ศรีสัชนาลัย ซิตี้"
-              className="w-full bg-dark border border-border rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-primary" />
+              className="w-full bg-dark border border-border rounded-lg px-3 py-2 text-text text-sm focus:outline-none focus:border-primary" />
           </div>
 
           {/* Match Date */}
           <div>
             <label className="block text-xs font-medium text-text-muted mb-1">วันเวลาแข่งขัน *</label>
             <input type="datetime-local" name="matchDate" defaultValue={dateLocal} required
-              className="w-full bg-dark border border-border rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-primary" />
+              className="w-full bg-dark border border-border rounded-lg px-3 py-2 text-text text-sm focus:outline-none focus:border-primary" />
           </div>
 
           {/* Venue */}
@@ -104,7 +104,7 @@ function MatchModal({
             <label className="block text-xs font-medium text-text-muted mb-1">สนามแข่งขัน</label>
             <input type="text" name="venue" defaultValue={match?.venue ?? ""}
               placeholder="เช่น สนามกีฬาอำเภอสวรรคโลก"
-              className="w-full bg-dark border border-border rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-primary" />
+              className="w-full bg-dark border border-border rounded-lg px-3 py-2 text-text text-sm focus:outline-none focus:border-primary" />
           </div>
 
           {/* Matchday */}
@@ -112,14 +112,14 @@ function MatchModal({
             <label className="block text-xs font-medium text-text-muted mb-1">นัดที่</label>
             <input type="number" name="matchday" defaultValue={match?.matchday ?? ""}
               placeholder="เช่น 1, 2, 3..."
-              className="w-full bg-dark border border-border rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-primary" />
+              className="w-full bg-dark border border-border rounded-lg px-3 py-2 text-text text-sm focus:outline-none focus:border-primary" />
           </div>
 
           {/* Status */}
           <div>
             <label className="block text-xs font-medium text-text-muted mb-1">สถานะ</label>
             <select name="status" defaultValue={match?.status ?? "scheduled"}
-              className="w-full bg-dark border border-border rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-primary">
+              className="w-full bg-dark border border-border rounded-lg px-3 py-2 text-text text-sm focus:outline-none focus:border-primary">
               {STATUS_OPTIONS.map((s) => (
                 <option key={s} value={s}>{MATCH_STATUS[s]}</option>
               ))}
@@ -135,7 +135,7 @@ function MatchModal({
               <input type="number" name="homeScore" min="0"
                 defaultValue={match?.homeScore ?? ""}
                 placeholder="ยังไม่มี"
-                className="w-full bg-dark border border-border rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-primary" />
+                className="w-full bg-dark border border-border rounded-lg px-3 py-2 text-text text-sm focus:outline-none focus:border-primary" />
             </div>
             <div>
               <label className="block text-xs font-medium text-text-muted mb-1">
@@ -144,7 +144,7 @@ function MatchModal({
               <input type="number" name="awayScore" min="0"
                 defaultValue={match?.awayScore ?? ""}
                 placeholder="ยังไม่มี"
-                className="w-full bg-dark border border-border rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-primary" />
+                className="w-full bg-dark border border-border rounded-lg px-3 py-2 text-text text-sm focus:outline-none focus:border-primary" />
             </div>
           </div>
 
@@ -203,7 +203,7 @@ export default function MatchesClient({ initialMatches }: Props) {
     <div className="p-6">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-extrabold text-white">จัดการแมตช์</h1>
+          <h1 className="text-2xl font-extrabold text-text">จัดการแมตช์</h1>
           <p className="text-text-muted text-sm mt-1">แมตช์ทั้งหมด {initialMatches.length} นัด</p>
         </div>
         <button onClick={openAdd}
@@ -244,13 +244,13 @@ export default function MatchesClient({ initialMatches }: Props) {
                       {formatThaiDate(new Date(m.matchDate))}
                     </td>
                     <td className="px-4 py-3">
-                      <p className="font-medium text-white">
+                      <p className="font-medium text-text">
                         {isHome ? "🏠" : "✈️"} {opponent.nameTh}
                       </p>
                       {m.matchday && <p className="text-xs text-text-muted">นัดที่ {m.matchday}</p>}
                     </td>
                     <td className="text-center px-4 py-3">
-                      <span className="font-bold font-[family-name:var(--font-display)] text-white text-lg">
+                      <span className="font-bold font-[family-name:var(--font-display)] text-text text-lg">
                         {m.homeScore !== undefined
                           ? `${m.homeScore} - ${m.awayScore}`
                           : "- vs -"}

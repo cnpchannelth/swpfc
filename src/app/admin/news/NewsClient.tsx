@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import type { NewsArticle } from "@/types";
 import { NEWS_CATEGORIES } from "@/lib/constants";
@@ -25,6 +26,24 @@ function NewsModal({
 }) {
   const formRef = useRef<HTMLFormElement>(null);
   const [loading, setLoading] = useState(false);
+  const [coverPreview, setCoverPreview] = useState<string | null>(article?.coverImage ?? null);
+  const [uploading, setUploading] = useState(false);
+
+  async function handleCoverChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setUploading(true);
+    const fd = new FormData();
+    fd.append("file", file);
+    const res = await fetch("/api/upload", { method: "POST", body: fd });
+    const json = await res.json();
+    if (json.url) {
+      setCoverPreview(json.url);
+      const hidden = formRef.current?.querySelector<HTMLInputElement>('input[name="coverImage"]');
+      if (hidden) hidden.value = json.url;
+    }
+    setUploading(false);
+  }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -39,10 +58,10 @@ function NewsModal({
     <div className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4">
       <div className="bg-surface border border-border rounded-2xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
         <div className="flex items-center justify-between p-5 border-b border-border">
-          <h2 className="text-lg font-bold text-white">
+          <h2 className="text-lg font-bold text-text">
             {article ? "แก้ไขข่าว" : "เพิ่มข่าวใหม่"}
           </h2>
-          <button onClick={onClose} className="text-text-muted hover:text-white transition-colors">
+          <button onClick={onClose} className="text-text-muted hover:text-text transition-colors">
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
@@ -55,7 +74,7 @@ function NewsModal({
             <label className="block text-xs font-medium text-text-muted mb-1">หัวข้อข่าว *</label>
             <input type="text" name="title" defaultValue={article?.title ?? ""} required
               placeholder="กรอกหัวข้อข่าว..."
-              className="w-full bg-dark border border-border rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-primary" />
+              className="w-full bg-dark border border-border rounded-lg px-3 py-2 text-text text-sm focus:outline-none focus:border-primary" />
           </div>
 
           {/* Category */}
@@ -63,7 +82,7 @@ function NewsModal({
             <div>
               <label className="block text-xs font-medium text-text-muted mb-1">หมวดหมู่</label>
               <select name="category" defaultValue={article?.category ?? "general"}
-                className="w-full bg-dark border border-border rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-primary">
+                className="w-full bg-dark border border-border rounded-lg px-3 py-2 text-text text-sm focus:outline-none focus:border-primary [&_option]:bg-white [&_option]:text-text">
                 {CATEGORY_KEYS.map((k) => (
                   <option key={k} value={k}>{NEWS_CATEGORIES[k]}</option>
                 ))}
@@ -86,15 +105,31 @@ function NewsModal({
             <label className="block text-xs font-medium text-text-muted mb-1">ข้อความย่อ</label>
             <input type="text" name="excerpt" defaultValue={article?.excerpt ?? ""}
               placeholder="สรุปข่าวสั้นๆ (แสดงในรายการข่าว)"
-              className="w-full bg-dark border border-border rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-primary" />
+              className="w-full bg-dark border border-border rounded-lg px-3 py-2 text-text text-sm focus:outline-none focus:border-primary" />
           </div>
 
           {/* Cover image */}
           <div>
-            <label className="block text-xs font-medium text-text-muted mb-1">URL รูปปก</label>
-            <input type="text" name="coverImage" defaultValue={article?.coverImage ?? ""}
-              placeholder="/images/news/filename.jpg"
-              className="w-full bg-dark border border-border rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-primary" />
+            <label className="block text-xs font-medium text-text-muted mb-2">รูปปกข่าว</label>
+            <div className="flex items-center gap-3">
+              <div className="w-20 h-14 rounded-lg bg-surface-light border border-border overflow-hidden flex items-center justify-center flex-shrink-0">
+                {coverPreview ? (
+                  <Image src={coverPreview} alt="cover" width={80} height={56} className="object-cover w-full h-full" />
+                ) : (
+                  <svg className="w-6 h-6 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                )}
+              </div>
+              <label className="cursor-pointer flex-1">
+                <div className={`flex items-center gap-2 px-3 py-2 rounded-lg border-2 border-dashed text-sm font-medium transition-colors
+                  ${uploading ? "border-border text-text-muted" : "border-primary/40 text-primary hover:border-primary hover:bg-primary/5"}`}>
+                  {uploading ? "กำลังอัพโหลด..." : "เลือกรูปปก / ถ่ายภาพ"}
+                </div>
+                <input type="file" accept="image/*" capture="environment" onChange={handleCoverChange} className="hidden" disabled={uploading} />
+              </label>
+            </div>
+            <input type="hidden" name="coverImage" defaultValue={article?.coverImage ?? ""} />
           </div>
 
           {/* Content */}
@@ -104,7 +139,7 @@ function NewsModal({
             </label>
             <textarea name="content" defaultValue={article?.content ?? ""} required rows={10}
               placeholder={`# หัวข้อหลัก\n\nเนื้อหาข่าว...\n\n**ตัวหนา** และ _ตัวเอียง_`}
-              className="w-full bg-dark border border-border rounded-lg px-3 py-2 text-white text-sm font-mono focus:outline-none focus:border-primary resize-y" />
+              className="w-full bg-dark border border-border rounded-lg px-3 py-2 text-text text-sm font-mono focus:outline-none focus:border-primary resize-y" />
           </div>
 
           {/* Buttons */}
@@ -171,7 +206,7 @@ export default function NewsClient({ initialArticles }: Props) {
     <div className="p-6">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-extrabold text-white">จัดการข่าวสาร</h1>
+          <h1 className="text-2xl font-extrabold text-text">จัดการข่าวสาร</h1>
           <p className="text-text-muted text-sm mt-1">
             ข่าวทั้งหมด {initialArticles.length} รายการ
             {" · "}เผยแพร่แล้ว {initialArticles.filter((a) => a.isPublished).length} รายการ
@@ -202,7 +237,7 @@ export default function NewsClient({ initialArticles }: Props) {
               {sorted.map((a) => (
                 <tr key={a.id} className="border-b border-border/50 hover:bg-surface-light transition-colors">
                   <td className="px-4 py-3">
-                    <p className="font-medium text-white line-clamp-1">{a.title}</p>
+                    <p className="font-medium text-text line-clamp-1">{a.title}</p>
                     {a.excerpt && <p className="text-xs text-text-muted line-clamp-1 mt-0.5">{a.excerpt}</p>}
                   </td>
                   <td className="text-center px-4 py-3 hidden md:table-cell">

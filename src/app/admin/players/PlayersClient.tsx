@@ -2,6 +2,7 @@
 
 import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import type { Player } from "@/types";
 import { POSITIONS, type Position } from "@/lib/constants";
 import { addPlayerAction, updatePlayerAction, deletePlayerAction } from "@/lib/actions/players";
@@ -25,6 +26,25 @@ function PlayerModal({
 }) {
   const formRef = useRef<HTMLFormElement>(null);
   const [loading, setLoading] = useState(false);
+  const [photoPreview, setPhotoPreview] = useState<string | null>(player?.photoUrl ?? null);
+  const [uploading, setUploading] = useState(false);
+
+  async function handlePhotoChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setUploading(true);
+    const fd = new FormData();
+    fd.append("file", file);
+    const res = await fetch("/api/upload", { method: "POST", body: fd });
+    const json = await res.json();
+    if (json.url) {
+      setPhotoPreview(json.url);
+      // inject into hidden input
+      const hidden = formRef.current?.querySelector<HTMLInputElement>('input[name="photoUrl"]');
+      if (hidden) hidden.value = json.url;
+    }
+    setUploading(false);
+  }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -36,13 +56,13 @@ function PlayerModal({
   }
 
   return (
-    <div className="fixed inset-0 bg-black/70 z-50 flex items-center justify-center p-4">
-      <div className="bg-surface border border-border rounded-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
+      <div className="bg-surface border border-border rounded-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto shadow-xl">
         <div className="flex items-center justify-between p-5 border-b border-border">
-          <h2 className="text-lg font-bold text-white">
+          <h2 className="text-lg font-bold text-text">
             {player ? "แก้ไขนักเตะ" : "เพิ่มนักเตะใหม่"}
           </h2>
-          <button onClick={onClose} className="text-text-muted hover:text-white transition-colors">
+          <button onClick={onClose} className="text-text-muted hover:text-text transition-colors">
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
@@ -57,7 +77,7 @@ function PlayerModal({
           <div>
             <label className="block text-xs font-medium text-text-muted mb-1">ตำแหน่ง *</label>
             <select name="position" defaultValue={player?.position ?? "MF"} required
-              className="w-full bg-dark border border-border rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-primary">
+              className="w-full bg-dark border border-border rounded-lg px-3 py-2 text-text text-sm focus:outline-none focus:border-primary">
               {POSITION_OPTIONS.map((p) => (
                 <option key={p} value={p}>{POSITIONS[p]} ({p})</option>
               ))}
@@ -81,16 +101,49 @@ function PlayerModal({
           <div>
             <label className="block text-xs font-medium text-text-muted mb-1">เท้าที่ถนัด</label>
             <select name="preferredFoot" defaultValue={player?.preferredFoot ?? "ขวา"}
-              className="w-full bg-dark border border-border rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-primary">
+              className="w-full bg-dark border border-border rounded-lg px-3 py-2 text-text text-sm focus:outline-none focus:border-primary">
               {FOOT_OPTIONS.map((f) => <option key={f} value={f}>{f}</option>)}
             </select>
           </div>
           {/* Hometown */}
           <Field label="ภูมิลำเนา" name="hometown" defaultValue={player?.hometown} />
-          {/* Photo URL */}
+
+          {/* Photo Upload */}
           <div className="col-span-2">
-            <Field label="URL รูปภาพ (เช่น /images/players/name.jpg)" name="photoUrl" defaultValue={player?.photoUrl} />
+            <label className="block text-xs font-medium text-text-muted mb-2">รูปภาพนักเตะ</label>
+            <div className="flex items-center gap-4">
+              {/* Preview */}
+              <div className="w-16 h-16 rounded-xl bg-surface-light border border-border overflow-hidden flex items-center justify-center flex-shrink-0">
+                {photoPreview ? (
+                  <Image src={photoPreview} alt="preview" width={64} height={64} className="object-cover w-full h-full" />
+                ) : (
+                  <svg className="w-8 h-8 text-text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  </svg>
+                )}
+              </div>
+              <div className="flex-1">
+                <label className="cursor-pointer">
+                  <div className={`flex items-center gap-2 px-4 py-2.5 rounded-lg border-2 border-dashed transition-colors text-sm font-medium
+                    ${uploading ? "border-border text-text-muted" : "border-primary/40 text-primary hover:border-primary hover:bg-primary/5"}`}>
+                    {uploading ? (
+                      <><span className="animate-spin w-4 h-4 border-2 border-primary border-t-transparent rounded-full inline-block" />กำลังอัพโหลด...</>
+                    ) : (
+                      <><svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>เลือกรูป / ถ่ายภาพ</>
+                    )}
+                  </div>
+                  <input type="file" accept="image/*" capture="environment" onChange={handlePhotoChange} className="hidden" disabled={uploading} />
+                </label>
+                <p className="text-xs text-text-muted mt-1">รองรับ JPG, PNG — กดจากมือถือเพื่อถ่ายภาพได้เลย</p>
+              </div>
+            </div>
+            {/* Hidden input holding the URL */}
+            <input type="hidden" name="photoUrl" defaultValue={player?.photoUrl ?? ""} />
           </div>
+
           {/* Is Active */}
           <div className="col-span-2 flex items-center gap-2">
             <input type="hidden" name="isActive" value="false" />
@@ -134,7 +187,7 @@ function Field({ label, name, type = "text", defaultValue, required }: {
         name={name}
         defaultValue={defaultValue ?? ""}
         required={required}
-        className="w-full bg-dark border border-border rounded-lg px-3 py-2 text-white text-sm placeholder-text-muted/50 focus:outline-none focus:border-primary transition-colors"
+        className="w-full bg-dark border border-border rounded-lg px-3 py-2 text-text text-sm placeholder-text-muted/50 focus:outline-none focus:border-primary transition-colors"
       />
     </div>
   );
@@ -171,7 +224,7 @@ export default function PlayersClient({ initialPlayers }: Props) {
   }
 
   const positionBadge = (pos: Position) => {
-    const colors = { GK: "text-warning bg-warning/10", DF: "text-blue-400 bg-blue-500/10", MF: "text-green-400 bg-green-500/10", FW: "text-primary bg-primary/10" };
+    const colors = { GK: "text-warning bg-warning/10", DF: "text-blue-600 bg-blue-100", MF: "text-green-600 bg-green-100", FW: "text-primary bg-primary/10" };
     return <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${colors[pos]}`}>{POSITIONS[pos]}</span>;
   };
 
@@ -179,7 +232,7 @@ export default function PlayersClient({ initialPlayers }: Props) {
     <div className="p-6">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-extrabold text-white">จัดการนักเตะ</h1>
+          <h1 className="text-2xl font-extrabold text-text">จัดการนักเตะ</h1>
           <p className="text-text-muted text-sm mt-1">นักเตะทั้งหมด {initialPlayers.length} คน</p>
         </div>
         <button onClick={openAdd}
@@ -192,7 +245,7 @@ export default function PlayersClient({ initialPlayers }: Props) {
       </div>
 
       {/* Table */}
-      <div className="bg-surface border border-border rounded-xl overflow-hidden">
+      <div className="bg-surface border border-border rounded-xl overflow-hidden shadow-sm">
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
@@ -212,7 +265,7 @@ export default function PlayersClient({ initialPlayers }: Props) {
                     {p.jerseyNumber}
                   </td>
                   <td className="px-4 py-3">
-                    <p className="font-medium text-white">{p.nameTh}</p>
+                    <p className="font-medium text-text">{p.nameTh}</p>
                     {p.nickname && <p className="text-xs text-text-muted">"{p.nickname}"</p>}
                   </td>
                   <td className="px-4 py-3">{positionBadge(p.position)}</td>
@@ -225,7 +278,7 @@ export default function PlayersClient({ initialPlayers }: Props) {
                   <td className="text-center px-4 py-3">
                     <div className="flex items-center justify-center gap-2">
                       <button onClick={() => openEdit(p)}
-                        className="text-xs px-3 py-1.5 bg-secondary/20 text-secondary-light hover:bg-secondary/40 rounded-lg transition-colors">
+                        className="text-xs px-3 py-1.5 bg-secondary/10 text-secondary hover:bg-secondary/20 rounded-lg transition-colors">
                         แก้ไข
                       </button>
                       <button onClick={() => handleDelete(p.id)} disabled={deleting === p.id}

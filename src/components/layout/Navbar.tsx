@@ -26,7 +26,7 @@ export default function Navbar({ isAdmin }: NavbarProps) {
   return (
     <nav className={cn(
       "sticky top-0 z-50 border-b border-border transition-all duration-300",
-      scrolled ? "bg-dark/90 backdrop-blur-md shadow-[0_4px_24px_rgba(0,0,0,0.4)]" : "bg-secondary"
+      scrolled ? "bg-secondary/95 backdrop-blur-md shadow-[0_4px_24px_rgba(0,0,0,0.25)]" : "bg-secondary"
     )}>
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
@@ -102,7 +102,7 @@ export default function Navbar({ isAdmin }: NavbarProps) {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden bg-dark/95 backdrop-blur-sm fixed inset-0 top-16 z-40">
+        <div className="md:hidden bg-secondary backdrop-blur-sm fixed inset-0 top-16 z-40">
           <div className="flex flex-col p-4 gap-1">
             {NAV_ITEMS.map((item) => (
               <Link

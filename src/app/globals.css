@@ -9,19 +9,19 @@
   --color-secondary-dark: #163A6A;
   --color-secondary-light: #2A6BB5;
 
-  /* Dark Theme */
-  --color-dark: #0D1117;
-  --color-surface: #161B22;
-  --color-surface-light: #21262D;
-  --color-border: #30363D;
+  /* Light Theme */
+  --color-dark: #F0F4F8;
+  --color-surface: #FFFFFF;
+  --color-surface-light: #F8FAFC;
+  --color-border: #E2E8F0;
 
   /* Text */
-  --color-text: #F0F6FC;
-  --color-text-muted: #8B949E;
+  --color-text: #1A202C;
+  --color-text-muted: #64748B;
 
   /* Status */
-  --color-success: #2EA043;
-  --color-warning: #D29922;
+  --color-success: #16A34A;
+  --color-warning: #D97706;
   --color-danger: #C41E3A;
 
   /* Fonts */
@@ -44,11 +44,11 @@ body {
   background: var(--color-dark);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-surface-light);
+  background: #CBD5E0;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-border);
+  background: #A0AEC0;
 }
 
 /* Angled section divider */
@@ -123,9 +123,9 @@ body {
 .skeleton {
   background: linear-gradient(
     90deg,
-    var(--color-surface-light) 25%,
-    var(--color-border)        50%,
-    var(--color-surface-light) 75%
+    #E2E8F0 25%,
+    #EDF2F7 50%,
+    #E2E8F0 75%
   );
   background-size: 200% 100%;
   animation: shimmer 1.5s ease-in-out infinite;
@@ -138,7 +138,7 @@ body {
 
 /* Hero gradient background */
 .hero-gradient {
-  background: linear-gradient(135deg, #163A6A, #1E4D8C, #0D1117, #1a3060);
+  background: linear-gradient(135deg, #163A6A, #1E4D8C, #0f2a5e, #1a3060);
   background-size: 400% 400%;
   animation: gradientShift 12s ease infinite;
 }
