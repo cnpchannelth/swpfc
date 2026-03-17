@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Noto_Sans_Thai, Oswald } from "next/font/google";
 import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
 import ScrollToTop from "@/components/ui/ScrollToTop";
 import { isAuthenticated } from "@/lib/auth";
 import "./globals.css";
@@ -37,7 +36,6 @@ export default async function RootLayout({
         <Navbar isAdmin={adminLoggedIn} />
         <main className="flex-1">{children}</main>
         <ScrollToTop />
-        <Footer />
       </body>
     </html>
   );
