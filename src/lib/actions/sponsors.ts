@@ -6,7 +6,7 @@ import type { Sponsor } from "@/types";
 
 export async function upsertSponsorAction(formData: FormData) {
   const id = formData.get("id") ? Number(formData.get("id")) : null;
-  const sponsors = getSponsors();
+  const sponsors = await getSponsors();
 
   const entry: Sponsor = {
     id: id ?? nextId(sponsors),
@@ -24,14 +24,14 @@ export async function upsertSponsorAction(formData: FormData) {
     sponsors.push(entry);
   }
 
-  saveSponsors(sponsors);
+  await saveSponsors(sponsors);
   revalidatePath("/");
   revalidatePath("/admin/sponsors");
 }
 
 export async function deleteSponsorAction(id: number) {
-  const sponsors = getSponsors().filter((s) => s.id !== id);
-  saveSponsors(sponsors);
+  const sponsors = (await getSponsors()).filter((s) => s.id !== id);
+  await saveSponsors(sponsors);
   revalidatePath("/");
   revalidatePath("/admin/sponsors");
 }

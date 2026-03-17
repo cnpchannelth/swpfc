@@ -6,7 +6,7 @@ import type { LeagueStanding } from "@/types";
 
 export async function upsertStandingAction(formData: FormData) {
   const id = formData.get("id") ? Number(formData.get("id")) : null;
-  const standings = getStandings();
+  const standings = await getStandings();
 
   const entry: LeagueStanding = {
     id: id ?? nextId(standings),
@@ -35,15 +35,15 @@ export async function upsertStandingAction(formData: FormData) {
 
   // Re-sort by position
   standings.sort((a, b) => a.position - b.position);
-  saveStandings(standings);
+  await saveStandings(standings);
   revalidatePath("/fixtures");
   revalidatePath("/admin/standings");
 }
 
 export async function deleteStandingAction(id: number) {
-  const standings = getStandings().filter((s) => s.id !== id);
+  const standings = (await getStandings()).filter((s) => s.id !== id);
   standings.sort((a, b) => a.position - b.position);
-  saveStandings(standings);
+  await saveStandings(standings);
   revalidatePath("/fixtures");
   revalidatePath("/admin/standings");
 }

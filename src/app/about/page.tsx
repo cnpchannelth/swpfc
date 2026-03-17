@@ -2,8 +2,10 @@ import Image from "next/image";
 import { getStaff } from "@/lib/data-store";
 import { CLUB } from "@/lib/constants";
 
-export default function AboutPage() {
-  const staff = getStaff();
+export const runtime = "edge";
+
+export default async function AboutPage() {
+  const staff = await getStaff();
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
       <h1 className="text-3xl font-extrabold text-text mb-2">เกี่ยวกับสโมสร</h1>

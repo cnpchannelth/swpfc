@@ -6,7 +6,7 @@ import type { Player } from "@/types";
 import type { Position } from "@/lib/constants";
 
 export async function addPlayerAction(formData: FormData) {
-  const players = getPlayers();
+  const players = await getPlayers();
   const newPlayer: Player = {
     id: nextId(players),
     jerseyNumber: parseInt(formData.get("jerseyNumber") as string) || 0,
@@ -23,13 +23,13 @@ export async function addPlayerAction(formData: FormData) {
     photoUrl: (formData.get("photoUrl") as string) || undefined,
     isActive: formData.get("isActive") === "true",
   };
-  savePlayers([...players, newPlayer]);
+  await savePlayers([...players, newPlayer]);
   revalidatePath("/squad");
   revalidatePath("/admin/players");
 }
 
 export async function updatePlayerAction(id: number, formData: FormData) {
-  const players = getPlayers();
+  const players = await getPlayers();
   const updated = players.map((p) =>
     p.id === id
       ? {
@@ -50,14 +50,14 @@ export async function updatePlayerAction(id: number, formData: FormData) {
         }
       : p
   );
-  savePlayers(updated);
+  await savePlayers(updated);
   revalidatePath("/squad");
   revalidatePath("/admin/players");
 }
 
 export async function deletePlayerAction(id: number) {
-  const players = getPlayers().filter((p) => p.id !== id);
-  savePlayers(players);
+  const players = (await getPlayers()).filter((p) => p.id !== id);
+  await savePlayers(players);
   revalidatePath("/squad");
   revalidatePath("/admin/players");
 }

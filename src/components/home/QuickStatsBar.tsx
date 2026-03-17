@@ -1,6 +1,8 @@
-import { standings, getMatches } from "@/lib/data-store";
+import { getStandings, getMatches } from "@/lib/data-store";
 import AnimatedStats from "./AnimatedStats";
 import type { Match } from "@/types";
+
+export const runtime = "edge";
 
 type StreakResult = "W" | "D" | "L";
 
@@ -18,11 +20,11 @@ function getStreak(matches: Match[]): StreakResult[] {
     .reverse();
 }
 
-export default function QuickStatsBar() {
+export default async function QuickStatsBar() {
+  const [standings, matches] = await Promise.all([getStandings(), getMatches()]);
   const swpStats = standings.find((s) => s.team.isOwn);
   if (!swpStats) return null;
 
-  const matches = getMatches();
   const streak = getStreak(matches);
 
   const stats = [

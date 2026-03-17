@@ -6,11 +6,11 @@ import type { PlayerSeasonStats } from "@/types";
 
 export async function upsertStatAction(formData: FormData) {
   const playerId = parseInt(formData.get("playerId") as string);
-  const players = getPlayers();
+  const players = await getPlayers();
   const player = players.find((p) => p.id === playerId);
   if (!player) return;
 
-  const stats = getPlayerStats();
+  const stats = await getPlayerStats();
   const existing = stats.find((s) => s.player.id === playerId);
 
   const updated: PlayerSeasonStats = {
@@ -26,9 +26,9 @@ export async function upsertStatAction(formData: FormData) {
   };
 
   if (existing) {
-    savePlayerStats(stats.map((s) => (s.player.id === playerId ? updated : s)));
+    await savePlayerStats(stats.map((s) => (s.player.id === playerId ? updated : s)));
   } else {
-    savePlayerStats([...stats, updated]);
+    await savePlayerStats([...stats, updated]);
   }
 
   revalidatePath("/stats");
@@ -36,8 +36,8 @@ export async function upsertStatAction(formData: FormData) {
 }
 
 export async function deleteStatAction(id: number) {
-  const stats = getPlayerStats().filter((s) => s.id !== id);
-  savePlayerStats(stats);
+  const stats = (await getPlayerStats()).filter((s) => s.id !== id);
+  await savePlayerStats(stats);
   revalidatePath("/stats");
   revalidatePath("/admin/stats");
 }

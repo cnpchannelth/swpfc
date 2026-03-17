@@ -14,7 +14,7 @@ function buildSlug(title: string, id: number): string {
 }
 
 export async function addNewsAction(formData: FormData) {
-  const articles = getNews();
+  const articles = await getNews();
   const id = nextId(articles);
   const title = (formData.get("title") as string) ?? "";
   const isPublished = formData.get("isPublished") === "true";
@@ -31,13 +31,13 @@ export async function addNewsAction(formData: FormData) {
     publishedAt: isPublished ? new Date().toISOString() : undefined,
     createdAt: new Date().toISOString(),
   };
-  saveNews([...articles, newArticle]);
+  await saveNews([...articles, newArticle]);
   revalidatePath("/news");
   revalidatePath("/admin/news");
 }
 
 export async function updateNewsAction(id: number, formData: FormData) {
-  const articles = getNews();
+  const articles = await getNews();
   const isPublished = formData.get("isPublished") === "true";
   const existing = articles.find((a) => a.id === id);
   const title = (formData.get("title") as string) || existing?.title || "";
@@ -60,20 +60,20 @@ export async function updateNewsAction(id: number, formData: FormData) {
         }
       : a
   );
-  saveNews(updated);
+  await saveNews(updated);
   revalidatePath("/news");
   revalidatePath("/admin/news");
 }
 
 export async function deleteNewsAction(id: number) {
-  const articles = getNews().filter((a) => a.id !== id);
-  saveNews(articles);
+  const articles = (await getNews()).filter((a) => a.id !== id);
+  await saveNews(articles);
   revalidatePath("/news");
   revalidatePath("/admin/news");
 }
 
 export async function togglePublishAction(id: number) {
-  const articles = getNews();
+  const articles = await getNews();
   const updated = articles.map((a) =>
     a.id === id
       ? {
@@ -83,7 +83,7 @@ export async function togglePublishAction(id: number) {
         }
       : a
   );
-  saveNews(updated);
+  await saveNews(updated);
   revalidatePath("/news");
   revalidatePath("/admin/news");
 }

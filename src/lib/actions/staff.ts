@@ -6,7 +6,7 @@ import type { Staff } from "@/types";
 
 export async function upsertStaffAction(formData: FormData) {
   const id = formData.get("id") ? Number(formData.get("id")) : null;
-  const staff = getStaff();
+  const staff = await getStaff();
 
   const entry: Staff = {
     id: id ?? nextId(staff),
@@ -24,14 +24,14 @@ export async function upsertStaffAction(formData: FormData) {
     staff.push(entry);
   }
 
-  saveStaff(staff);
+  await saveStaff(staff);
   revalidatePath("/about");
   revalidatePath("/admin/staff");
 }
 
 export async function deleteStaffAction(id: number) {
-  const staff = getStaff().filter((s) => s.id !== id);
-  saveStaff(staff);
+  const staff = (await getStaff()).filter((s) => s.id !== id);
+  await saveStaff(staff);
   revalidatePath("/about");
   revalidatePath("/admin/staff");
 }

@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import fs from "fs";
-import path from "path";
+import { getRequestContext } from "@cloudflare/next-on-pages";
 
-const UPLOAD_DIR = path.join(process.cwd(), "data", "uploads");
+export const runtime = "edge";
 
 export async function POST(req: NextRequest) {
   try {
@@ -13,20 +12,25 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "No file" }, { status: 400 });
     }
 
-    // Ensure upload directory exists
-    if (!fs.existsSync(UPLOAD_DIR)) {
-      fs.mkdirSync(UPLOAD_DIR, { recursive: true });
-    }
-
-    // Sanitize filename and add timestamp to avoid collisions
-    const ext = path.extname(file.name) || ".jpg";
-    const base = path.basename(file.name, ext).replace(/[^a-zA-Z0-9_-]/g, "_");
+    const ext = file.name.includes(".")
+      ? "." + file.name.split(".").pop()!.toLowerCase()
+      : ".jpg";
+    const base = file.name
+      .replace(/\.[^/.]+$/, "")
+      .replace(/[^a-zA-Z0-9_-]/g, "_")
+      .slice(0, 60);
     const filename = `${Date.now()}_${base}${ext}`;
-    const filepath = path.join(UPLOAD_DIR, filename);
 
-    // Write file
-    const buffer = Buffer.from(await file.arrayBuffer());
-    fs.writeFileSync(filepath, buffer);
+    const { env } = getRequestContext();
+    const r2 = (env as unknown as { R2: R2Bucket }).R2;
+
+    const buffer = await file.arrayBuffer();
+    await r2.put(filename, buffer, {
+      httpMetadata: {
+        contentType: file.type || "image/jpeg",
+        cacheControl: "public, max-age=31536000, immutable",
+      },
+    });
 
     return NextResponse.json({ url: `/api/uploads/${filename}` });
   } catch (err) {

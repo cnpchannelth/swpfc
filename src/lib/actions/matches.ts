@@ -35,28 +35,28 @@ function buildMatch(id: number, formData: FormData): Match {
 }
 
 export async function addMatchAction(formData: FormData) {
-  const matches = getMatches();
+  const matches = await getMatches();
   const newMatch = buildMatch(nextId(matches), formData);
-  saveMatches([...matches, newMatch]);
+  await saveMatches([...matches, newMatch]);
   revalidatePath("/fixtures");
   revalidatePath("/");
   revalidatePath("/admin/matches");
 }
 
 export async function updateMatchAction(id: number, formData: FormData) {
-  const matches = getMatches();
+  const matches = await getMatches();
   const updated = matches.map((m) =>
     m.id === id ? { ...buildMatch(id, formData), id } : m
   );
-  saveMatches(updated);
+  await saveMatches(updated);
   revalidatePath("/fixtures");
   revalidatePath("/");
   revalidatePath("/admin/matches");
 }
 
 export async function deleteMatchAction(id: number) {
-  const matches = getMatches().filter((m) => m.id !== id);
-  saveMatches(matches);
+  const matches = (await getMatches()).filter((m) => m.id !== id);
+  await saveMatches(matches);
   revalidatePath("/fixtures");
   revalidatePath("/");
   revalidatePath("/admin/matches");

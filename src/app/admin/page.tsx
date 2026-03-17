@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { getPlayers, getMatches, getNews } from "@/lib/data-store";
 
-export default function AdminDashboardPage() {
-  const players = getPlayers();
-  const matches = getMatches();
-  const news = getNews();
+export const runtime = "edge";
+
+export default async function AdminDashboardPage() {
+  const [players, matches, news] = await Promise.all([getPlayers(), getMatches(), getNews()]);
 
   const completed = matches.filter((m) => m.status === "completed");
   const upcoming = matches.filter((m) => m.status === "scheduled");

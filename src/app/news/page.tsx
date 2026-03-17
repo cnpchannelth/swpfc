@@ -3,8 +3,10 @@ import { getNews } from "@/lib/data-store";
 import { formatThaiDate } from "@/lib/utils";
 import { NEWS_CATEGORIES } from "@/lib/constants";
 
-export default function NewsPage() {
-  const news = getNews();
+export const runtime = "edge";
+
+export default async function NewsPage() {
+  const news = await getNews();
   const publishedNews = news
     .filter((n) => n.isPublished)
     .sort((a, b) => new Date(b.publishedAt!).getTime() - new Date(a.publishedAt!).getTime());

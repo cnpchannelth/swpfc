@@ -5,8 +5,10 @@ import { formatThaiDateShort } from "@/lib/utils";
 import { CLUB } from "@/lib/constants";
 import FadeIn from "@/components/ui/FadeIn";
 
-export default function LatestResults() {
-  const matches = getMatches();
+export const runtime = "edge";
+
+export default async function LatestResults() {
+  const matches = await getMatches();
   const completedMatches = matches
     .filter((m) => m.status === "completed")
     .sort((a, b) => new Date(b.matchDate).getTime() - new Date(a.matchDate).getTime())

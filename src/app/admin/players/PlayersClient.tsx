@@ -36,7 +36,7 @@ function PlayerModal({
     const fd = new FormData();
     fd.append("file", file);
     const res = await fetch("/api/upload", { method: "POST", body: fd });
-    const json = await res.json();
+    const json = await res.json() as { url?: string };
     if (json.url) {
       setPhotoPreview(json.url);
       // inject into hidden input

@@ -36,7 +36,7 @@ function NewsModal({
     const fd = new FormData();
     fd.append("file", file);
     const res = await fetch("/api/upload", { method: "POST", body: fd });
-    const json = await res.json();
+    const json = await res.json() as { url?: string };
     if (json.url) {
       setCoverPreview(json.url);
       const hidden = formRef.current?.querySelector<HTMLInputElement>('input[name="coverImage"]');

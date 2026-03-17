@@ -2,8 +2,9 @@
 import { getMatches, getStandings } from "@/lib/data-store";
 import FixturesClient from "./FixturesClient";
 
-export default function FixturesPage() {
-  const matches = getMatches();
-  const standings = getStandings();
+export const runtime = "edge";
+
+export default async function FixturesPage() {
+  const [matches, standings] = await Promise.all([getMatches(), getStandings()]);
   return <FixturesClient matches={matches} standings={standings} />;
 }

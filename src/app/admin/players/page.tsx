@@ -1,7 +1,9 @@
 import { getPlayers } from "@/lib/data-store";
 import PlayersClient from "./PlayersClient";
 
-export default function AdminPlayersPage() {
-  const players = getPlayers();
+export const runtime = "edge";
+
+export default async function AdminPlayersPage() {
+  const players = await getPlayers();
   return <PlayersClient initialPlayers={players} />;
 }

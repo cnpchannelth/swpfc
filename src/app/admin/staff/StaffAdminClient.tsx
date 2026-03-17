@@ -40,7 +40,7 @@ export default function StaffAdminClient({ staff }: { staff: Staff[] }) {
     const formData = new FormData();
     formData.append("file", file);
     const res = await fetch("/api/upload", { method: "POST", body: formData });
-    const json = await res.json();
+    const json = await res.json() as { url?: string };
     if (json.url) {
       setPhotoPreview(json.url);
       setEditing((prev) => prev ? { ...prev, photoUrl: json.url } : prev);

@@ -3,8 +3,10 @@ import Link from "next/link";
 import { CLUB } from "@/lib/constants";
 import { getMatches } from "@/lib/data-store";
 
-export default function HeroBanner() {
-  const matches = getMatches();
+export const runtime = "edge";
+
+export default async function HeroBanner() {
+  const matches = await getMatches();
   const completed = matches
     .filter((m) => m.status === "completed")
     .sort((a, b) => new Date(b.matchDate).getTime() - new Date(a.matchDate).getTime())

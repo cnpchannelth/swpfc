@@ -5,13 +5,15 @@ import { formatThaiDate } from "@/lib/utils";
 import { NEWS_CATEGORIES } from "@/lib/constants";
 import ShareButtons from "@/components/news/ShareButtons";
 
+export const runtime = "edge";
+
 interface Props {
   params: Promise<{ slug: string }>;
 }
 
 export default async function NewsDetailPage({ params }: Props) {
   const { slug } = await params;
-  const news = getNews();
+  const news = await getNews();
   const article = news.find((n) => n.slug === slug && n.isPublished);
   if (!article) return notFound();
 
