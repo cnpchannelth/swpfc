@@ -27,7 +27,7 @@ export default function AdminDashboardPage() {
 
   return (
     <div className="p-6 max-w-5xl">
-      <h1 className="text-2xl font-extrabold text-white mb-1">ภาพรวม</h1>
+      <h1 className="text-2xl font-extrabold text-text mb-1">ภาพรวม</h1>
       <p className="text-text-muted text-sm mb-6">ยินดีต้อนรับ แอดมินตำรวจสวรรคโลก เอฟซี</p>
 
       {/* Stats Grid */}
@@ -46,13 +46,13 @@ export default function AdminDashboardPage() {
 
       {/* Quick Actions */}
       <div className="mb-8">
-        <h2 className="text-base font-bold text-white mb-3">การดำเนินการด่วน</h2>
+        <h2 className="text-base font-bold text-text mb-3">การดำเนินการด่วน</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           {quickActions.map((a) => (
             <Link key={a.label} href={a.href}>
               <div className="bg-surface border border-border rounded-xl p-4 flex items-center gap-3 hover:border-primary/50 transition-colors">
                 <span className="text-2xl">{a.icon}</span>
-                <span className="text-sm font-medium text-white">{a.label}</span>
+                <span className="text-sm font-medium text-text">{a.label}</span>
                 <svg className="w-4 h-4 text-text-muted ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
@@ -64,7 +64,7 @@ export default function AdminDashboardPage() {
 
       {/* Latest matches */}
       <div>
-        <h2 className="text-base font-bold text-white mb-3">แมตช์ล่าสุด</h2>
+        <h2 className="text-base font-bold text-text mb-3">แมตช์ล่าสุด</h2>
         <div className="bg-surface border border-border rounded-xl overflow-hidden">
           <table className="w-full text-sm">
             <thead>
@@ -80,11 +80,11 @@ export default function AdminDashboardPage() {
                 const opponent = isHome ? m.awayTeam : m.homeTeam;
                 return (
                   <tr key={m.id} className="border-b border-border/50 hover:bg-surface-light transition-colors">
-                    <td className="px-4 py-3 text-white">
+                    <td className="px-4 py-3 text-text">
                       {isHome ? "🏠 " : "✈️ "}
                       {opponent.nameTh}
                     </td>
-                    <td className="text-center px-4 py-3 font-bold font-[family-name:var(--font-display)] text-white">
+                    <td className="text-center px-4 py-3 font-bold font-[family-name:var(--font-display)] text-text">
                       {m.homeScore !== undefined ? `${m.homeScore} - ${m.awayScore}` : "- vs -"}
                     </td>
                     <td className="text-center px-4 py-3">

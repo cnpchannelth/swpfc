@@ -11,7 +11,7 @@ export default function NewsPage() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
-      <h1 className="text-3xl font-extrabold text-white mb-2">ข่าวสาร</h1>
+      <h1 className="text-3xl font-extrabold text-text mb-2">ข่าวสาร</h1>
       <p className="text-text-muted mb-8">ข่าวสารและอัปเดตล่าสุดจากสโมสร</p>
 
       <div className="flex flex-col gap-4">
@@ -44,7 +44,7 @@ export default function NewsPage() {
                   </span>
                 </div>
                 <h2 className={cn(
-                  "font-bold text-white leading-snug",
+                  "font-bold text-text leading-snug",
                   index === 0 ? "text-xl" : "text-base"
                 )}>
                   {article.title}

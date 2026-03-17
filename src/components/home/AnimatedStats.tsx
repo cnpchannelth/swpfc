@@ -42,7 +42,7 @@ function AnimatedNumber({
 }) {
   const count = useCountUp(value, 900, active);
   return (
-    <span className={`text-2xl md:text-3xl font-bold font-[family-name:var(--font-display)] tabular-nums ${color ?? "text-white"}`}>
+    <span className={`text-2xl md:text-3xl font-bold font-[family-name:var(--font-display)] tabular-nums ${color ?? "text-text"}`}>
       {count}
     </span>
   );

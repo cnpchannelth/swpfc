@@ -49,6 +49,33 @@ const ADMIN_NAV = [
       </svg>
     ),
   },
+  {
+    href: "/admin/standings",
+    label: "ตารางคะแนน",
+    icon: (
+      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M3 14h18M10 3v18M14 3v18" />
+      </svg>
+    ),
+  },
+  {
+    href: "/admin/staff",
+    label: "สตาฟฟ์",
+    icon: (
+      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+      </svg>
+    ),
+  },
+  {
+    href: "/admin/sponsors",
+    label: "สปอนเซอร์",
+    icon: (
+      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+    ),
+  },
 ];
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -68,7 +95,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
               <Link
                 key={item.href}
                 href={item.href}
-                className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-text-muted hover:text-white hover:bg-surface-light rounded-lg transition-colors group"
+                className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-text-muted hover:text-text hover:bg-surface-light rounded-lg transition-colors group"
               >
                 <span className="text-text-muted group-hover:text-primary transition-colors">
                   {item.icon}
@@ -81,7 +108,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
           <div className="border-t border-border mt-4 pt-4">
             <Link
               href="/"
-              className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-text-muted hover:text-white hover:bg-surface-light rounded-lg transition-colors"
+              className="flex items-center gap-3 px-3 py-2.5 text-sm font-medium text-text-muted hover:text-text hover:bg-surface-light rounded-lg transition-colors"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />

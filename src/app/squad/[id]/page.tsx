@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { getPlayers, playerStats } from "@/lib/data-store";
+import { getPlayers, getPlayerStats } from "@/lib/data-store";
 import { POSITIONS } from "@/lib/constants";
 import { formatThaiDate } from "@/lib/utils";
 
@@ -15,7 +15,8 @@ export default async function PlayerDetailPage({ params }: Props) {
   const player = players.find((p) => p.id === parseInt(id));
   if (!player) return notFound();
 
-  const stats = playerStats.find((s) => s.player.id === player.id);
+  const allStats = getPlayerStats();
+  const stats = allStats.find((s) => s.player.id === player.id);
 
   const positionColors = {
     GK: "bg-warning/20 text-warning border-warning/30",
@@ -69,7 +70,7 @@ export default async function PlayerDetailPage({ params }: Props) {
                   {POSITIONS[player.position]}
                 </span>
               </div>
-              <h1 className="text-2xl md:text-3xl font-extrabold text-white">
+              <h1 className="text-2xl md:text-3xl font-extrabold text-text">
                 {player.nameTh}
               </h1>
               {player.nickname && (
@@ -85,7 +86,7 @@ export default async function PlayerDetailPage({ params }: Props) {
             {player.dateOfBirth && (
               <div className="bg-dark rounded-lg p-3">
                 <p className="text-xs text-text-muted">วันเกิด</p>
-                <p className="text-sm font-medium text-white mt-1">
+                <p className="text-sm font-medium text-text mt-1">
                   {formatThaiDate(new Date(player.dateOfBirth))}
                 </p>
               </div>
@@ -93,7 +94,7 @@ export default async function PlayerDetailPage({ params }: Props) {
             {player.heightCm && (
               <div className="bg-dark rounded-lg p-3">
                 <p className="text-xs text-text-muted">ส่วนสูง</p>
-                <p className="text-sm font-medium text-white mt-1">
+                <p className="text-sm font-medium text-text mt-1">
                   {player.heightCm} ซม.
                 </p>
               </div>
@@ -101,7 +102,7 @@ export default async function PlayerDetailPage({ params }: Props) {
             {player.weightKg && (
               <div className="bg-dark rounded-lg p-3">
                 <p className="text-xs text-text-muted">น้ำหนัก</p>
-                <p className="text-sm font-medium text-white mt-1">
+                <p className="text-sm font-medium text-text mt-1">
                   {player.weightKg} กก.
                 </p>
               </div>
@@ -109,21 +110,21 @@ export default async function PlayerDetailPage({ params }: Props) {
             {player.preferredFoot && (
               <div className="bg-dark rounded-lg p-3">
                 <p className="text-xs text-text-muted">เท้าที่ถนัด</p>
-                <p className="text-sm font-medium text-white mt-1">
+                <p className="text-sm font-medium text-text mt-1">
                   {player.preferredFoot}
                 </p>
               </div>
             )}
             <div className="bg-dark rounded-lg p-3">
               <p className="text-xs text-text-muted">สัญชาติ</p>
-              <p className="text-sm font-medium text-white mt-1">
+              <p className="text-sm font-medium text-text mt-1">
                 {player.nationality}
               </p>
             </div>
             {player.hometown && (
               <div className="bg-dark rounded-lg p-3">
                 <p className="text-xs text-text-muted">ภูมิลำเนา</p>
-                <p className="text-sm font-medium text-white mt-1">
+                <p className="text-sm font-medium text-text mt-1">
                   {player.hometown}
                 </p>
               </div>
@@ -133,7 +134,7 @@ export default async function PlayerDetailPage({ params }: Props) {
           {/* Season Stats */}
           {stats && (
             <div className="mt-8">
-              <h2 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+              <h2 className="text-lg font-bold text-text mb-4 flex items-center gap-2">
                 <span className="w-1 h-5 bg-primary rounded" />
                 สถิติฤดูกาล 2569
               </h2>
@@ -150,7 +151,7 @@ export default async function PlayerDetailPage({ params }: Props) {
                   { label: "นาที", value: stats.minutesPlayed },
                 ].map((stat) => (
                   <div key={stat.label} className="bg-dark rounded-lg p-3 text-center">
-                    <p className={`text-2xl font-bold font-[family-name:var(--font-display)] ${stat.highlight ? "text-primary" : "text-white"}`}>
+                    <p className={`text-2xl font-bold font-[family-name:var(--font-display)] ${stat.highlight ? "text-primary" : "text-text"}`}>
                       {stat.value}
                     </p>
                     <p className="text-xs text-text-muted mt-1">{stat.label}</p>

@@ -72,10 +72,32 @@ export function savePlayerStats(data: PlayerSeasonStats[]) {
   writeFile("player_stats.json", data);
 }
 
-// ===== READ-ONLY (sample data) =====
+// ===== STANDINGS =====
+export function getStandings() {
+  return readFile('standings.json', defaultStandings);
+}
+export function saveStandings(data: typeof defaultStandings) {
+  writeFile('standings.json', data);
+}
+
+// ===== STAFF =====
+export function getStaff() {
+  return readFile('staff.json', defaultStaff);
+}
+export function saveStaff(data: typeof defaultStaff) {
+  writeFile('staff.json', data);
+}
+
+// ===== SPONSORS =====
+export function getSponsors() {
+  return readFile('sponsors.json', defaultSponsors);
+}
+export function saveSponsors(data: typeof defaultSponsors) {
+  writeFile('sponsors.json', data);
+}
+
+// Legacy export
 export { defaultStandings as standings };
-export { defaultStaff as staff };
-export { defaultSponsors as sponsors };
 
 // ===== HELPERS =====
 export function nextId(items: { id: number }[]): number {

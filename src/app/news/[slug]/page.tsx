@@ -20,14 +20,14 @@ export default async function NewsDetailPage({ params }: Props) {
     return content.split("\n").map((line, i) => {
       if (line.startsWith("# ")) {
         return (
-          <h1 key={i} className="text-2xl font-extrabold text-white mt-6 mb-3">
+          <h1 key={i} className="text-2xl font-extrabold text-text mt-6 mb-3">
             {line.slice(2)}
           </h1>
         );
       }
       if (line.startsWith("## ")) {
         return (
-          <h2 key={i} className="text-xl font-bold text-white mt-5 mb-2">
+          <h2 key={i} className="text-xl font-bold text-text mt-5 mb-2">
             {line.slice(3)}
           </h2>
         );
@@ -48,7 +48,7 @@ export default async function NewsDetailPage({ params }: Props) {
         <p key={i} className="text-text leading-relaxed">
           {parts.map((part, j) =>
             j % 2 === 1 ? (
-              <strong key={j} className="font-bold text-white">
+              <strong key={j} className="font-bold text-text">
                 {part}
               </strong>
             ) : (
@@ -90,7 +90,7 @@ export default async function NewsDetailPage({ params }: Props) {
           </div>
 
           {/* Title */}
-          <h1 className="text-2xl md:text-3xl font-extrabold text-white mb-6">
+          <h1 className="text-2xl md:text-3xl font-extrabold text-text mb-6">
             {article.title}
           </h1>
 

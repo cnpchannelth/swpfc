@@ -16,7 +16,7 @@ export default function NextMatchCard() {
 
   return (
     <section className="max-w-7xl mx-auto px-4 py-8">
-      <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+      <h2 className="text-xl font-bold text-text mb-4 flex items-center gap-2">
         <span className="w-1 h-6 bg-primary rounded" />
         นัดถัดไป
       </h2>
@@ -38,7 +38,7 @@ export default function NextMatchCard() {
                   {opponent.nameTh.charAt(0)}
                 </div>
               )}
-              <span className="text-sm font-medium text-white text-center">
+              <span className="text-sm font-medium text-text text-center">
                 {isHome ? CLUB.shortName : nextMatch.homeTeam.nameTh}
               </span>
             </div>
@@ -75,7 +75,7 @@ export default function NextMatchCard() {
                   {opponent.nameTh.charAt(0)}
                 </div>
               )}
-              <span className="text-sm font-medium text-white text-center">
+              <span className="text-sm font-medium text-text text-center">
                 {!isHome ? CLUB.shortName : nextMatch.awayTeam.nameTh}
               </span>
             </div>

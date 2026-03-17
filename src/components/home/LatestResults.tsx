@@ -16,7 +16,7 @@ export default function LatestResults() {
 
   return (
     <section className="max-w-7xl mx-auto px-4 py-8">
-      <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+      <h2 className="text-xl font-bold text-text mb-4 flex items-center gap-2">
         <span className="w-1 h-6 bg-primary rounded" />
         ผลการแข่งขันล่าสุด
       </h2>
@@ -56,8 +56,8 @@ export default function LatestResults() {
                       className="flex-shrink-0 group-hover:scale-110 transition-transform"
                     />
                     <div className="flex items-center gap-2 flex-1 min-w-0">
-                      <span className="text-white font-semibold text-sm">{CLUB.shortName}</span>
-                      <span className="text-xl font-bold font-[family-name:var(--font-display)] text-white">
+                      <span className="text-text font-semibold text-sm">{CLUB.shortName}</span>
+                      <span className="text-xl font-bold font-[family-name:var(--font-display)] text-text">
                         {match.homeScore} - {match.awayScore}
                       </span>
                       <span className="text-text-muted text-sm truncate">{opponent.nameTh}</span>

@@ -55,7 +55,7 @@ export default function PlayerCard({ player }: PlayerCardProps) {
                   {POSITIONS[player.position]}
                 </span>
               </div>
-              <h3 className="font-bold text-white text-sm leading-snug">{player.nameTh}</h3>
+              <h3 className="font-bold text-text text-sm leading-snug">{player.nameTh}</h3>
               {player.nickname && (
                 <p className="text-xs text-text-muted mt-0.5">&quot;{player.nickname}&quot;</p>
               )}
@@ -74,7 +74,7 @@ export default function PlayerCard({ player }: PlayerCardProps) {
               </span>
             </div>
 
-            <h3 className="font-extrabold text-white text-base leading-snug mb-3">
+            <h3 className="font-extrabold text-text text-base leading-snug mb-3">
               {player.nameTh}
             </h3>
 
@@ -82,25 +82,25 @@ export default function PlayerCard({ player }: PlayerCardProps) {
               {player.nationality && (
                 <div className="bg-dark rounded-lg p-2">
                   <p className="text-text-muted">สัญชาติ</p>
-                  <p className="text-white font-medium mt-0.5">{player.nationality}</p>
+                  <p className="text-text font-medium mt-0.5">{player.nationality}</p>
                 </div>
               )}
               {player.preferredFoot && (
                 <div className="bg-dark rounded-lg p-2">
                   <p className="text-text-muted">เท้าถนัด</p>
-                  <p className="text-white font-medium mt-0.5">{player.preferredFoot}</p>
+                  <p className="text-text font-medium mt-0.5">{player.preferredFoot}</p>
                 </div>
               )}
               {player.heightCm && (
                 <div className="bg-dark rounded-lg p-2">
                   <p className="text-text-muted">ส่วนสูง</p>
-                  <p className="text-white font-medium mt-0.5">{player.heightCm} ซม.</p>
+                  <p className="text-text font-medium mt-0.5">{player.heightCm} ซม.</p>
                 </div>
               )}
               {player.hometown && (
                 <div className="bg-dark rounded-lg p-2">
                   <p className="text-text-muted">ภูมิลำเนา</p>
-                  <p className="text-white font-medium mt-0.5 truncate">{player.hometown}</p>
+                  <p className="text-text font-medium mt-0.5 truncate">{player.hometown}</p>
                 </div>
               )}
             </div>

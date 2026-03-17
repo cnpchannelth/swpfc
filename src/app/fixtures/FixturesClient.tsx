@@ -34,7 +34,7 @@ export default function FixturesClient({
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
-      <h1 className="text-3xl font-extrabold text-white mb-2">ตารางแข่งขัน</h1>
+      <h1 className="text-3xl font-extrabold text-text mb-2">ตารางแข่งขัน</h1>
       <p className="text-text-muted mb-6">ฤดูกาล 2569 - ลีกอำเภอสวรรคโลก</p>
 
       {/* Tabs */}
@@ -46,8 +46,8 @@ export default function FixturesClient({
             className={cn(
               "px-4 py-3 text-sm font-medium transition-colors border-b-2 -mb-px",
               tab === t.key
-                ? "text-white border-primary"
-                : "text-text-muted border-transparent hover:text-white"
+                ? "text-primary border-primary"
+                : "text-text-muted border-transparent hover:text-text"
             )}
           >
             {t.label}
@@ -86,7 +86,7 @@ export default function FixturesClient({
                 </div>
                 <div className="flex items-center gap-3 flex-1">
                   <div className="flex items-center gap-2 flex-1 justify-end text-right">
-                    <span className={cn("text-sm font-medium", match.homeTeam.isOwn ? "text-white" : "text-text-muted")}>
+                    <span className={cn("text-sm font-medium", match.homeTeam.isOwn ? "text-text" : "text-text-muted")}>
                       {match.homeTeam.isOwn ? CLUB.shortName : match.homeTeam.nameTh}
                     </span>
                     {match.homeTeam.isOwn && (
@@ -106,7 +106,7 @@ export default function FixturesClient({
                     {match.awayTeam.isOwn && (
                       <Image src={CLUB.logo} alt="SWP" width={28} height={28} className="flex-shrink-0" />
                     )}
-                    <span className={cn("text-sm font-medium", match.awayTeam.isOwn ? "text-white" : "text-text-muted")}>
+                    <span className={cn("text-sm font-medium", match.awayTeam.isOwn ? "text-text" : "text-text-muted")}>
                       {match.awayTeam.isOwn ? CLUB.shortName : match.awayTeam.nameTh}
                     </span>
                   </div>
@@ -133,7 +133,7 @@ export default function FixturesClient({
                 <span className="text-xs text-text-muted">นัดที่ {match.matchday}</span>
                 <div className="flex items-center gap-4 flex-1">
                   <div className="flex items-center gap-2 flex-1 justify-end">
-                    <span className={cn("text-sm font-medium", match.homeTeam.isOwn ? "text-white" : "text-text-muted")}>
+                    <span className={cn("text-sm font-medium", match.homeTeam.isOwn ? "text-text" : "text-text-muted")}>
                       {match.homeTeam.isOwn ? CLUB.shortName : match.homeTeam.nameTh}
                     </span>
                     {match.homeTeam.isOwn && (
@@ -151,7 +151,7 @@ export default function FixturesClient({
                     {match.awayTeam.isOwn && (
                       <Image src={CLUB.logo} alt="SWP" width={40} height={40} />
                     )}
-                    <span className={cn("text-sm font-medium", match.awayTeam.isOwn ? "text-white" : "text-text-muted")}>
+                    <span className={cn("text-sm font-medium", match.awayTeam.isOwn ? "text-text" : "text-text-muted")}>
                       {match.awayTeam.isOwn ? CLUB.shortName : match.awayTeam.nameTh}
                     </span>
                   </div>
@@ -207,7 +207,7 @@ export default function FixturesClient({
                       {row.team.isOwn && (
                         <span className="w-1.5 h-1.5 rounded-full bg-primary flex-shrink-0" />
                       )}
-                      <span className={cn("font-medium", row.team.isOwn ? "text-white" : "text-text-muted")}>
+                      <span className={cn("font-medium", row.team.isOwn ? "text-text" : "text-text-muted")}>
                         {row.team.isOwn ? CLUB.shortName : row.team.nameTh}
                       </span>
                     </div>
@@ -222,7 +222,7 @@ export default function FixturesClient({
                     {row.goalsFor - row.goalsAgainst > 0 ? "+" : ""}
                     {row.goalsFor - row.goalsAgainst}
                   </td>
-                  <td className={cn("text-center py-3 px-2 font-bold font-[family-name:var(--font-display)] text-lg", row.team.isOwn ? "text-primary" : "text-white")}>
+                  <td className={cn("text-center py-3 px-2 font-bold font-[family-name:var(--font-display)] text-lg", row.team.isOwn ? "text-primary" : "text-text")}>
                     {row.points}
                   </td>
                 </tr>

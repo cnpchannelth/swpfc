@@ -20,13 +20,13 @@ export default function LoginPage() {
             height={80}
             className="mb-4"
           />
-          <h1 className="text-2xl font-extrabold text-white">{CLUB.name}</h1>
+          <h1 className="text-2xl font-extrabold text-text">{CLUB.name}</h1>
           <p className="text-text-muted text-sm mt-1">ระบบจัดการสโมสร</p>
         </div>
 
         {/* Card */}
         <div className="bg-surface border border-border rounded-2xl p-8">
-          <h2 className="text-lg font-bold text-white mb-6 text-center">
+          <h2 className="text-lg font-bold text-text mb-6 text-center">
             เข้าสู่ระบบแอดมิน
           </h2>
 

@@ -1,11 +1,12 @@
 import Image from "next/image";
-import { staff } from "@/lib/sample-data";
+import { getStaff } from "@/lib/data-store";
 import { CLUB } from "@/lib/constants";
 
 export default function AboutPage() {
+  const staff = getStaff();
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
-      <h1 className="text-3xl font-extrabold text-white mb-2">เกี่ยวกับสโมสร</h1>
+      <h1 className="text-3xl font-extrabold text-text mb-2">เกี่ยวกับสโมสร</h1>
       <p className="text-text-muted mb-8">ประวัติและข้อมูลสโมสรตำรวจสวรรคโลก เอฟซี</p>
 
       {/* Club History */}
@@ -19,13 +20,13 @@ export default function AboutPage() {
             className="flex-shrink-0 mx-auto md:mx-0"
           />
           <div>
-            <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+            <h2 className="text-xl font-bold text-text mb-4 flex items-center gap-2">
               <span className="w-1 h-5 bg-primary rounded" />
               ประวัติสโมสร
             </h2>
             <div className="space-y-3 text-text-muted leading-relaxed">
               <p>
-                <strong className="text-white">สโมสรฟุตบอลตำรวจสวรรคโลก (Police Sawankhalok FC)</strong>{" "}
+                <strong className="text-text">สโมสรฟุตบอลตำรวจสวรรคโลก (Police Sawankhalok FC)</strong>{" "}
                 เป็นสโมสรฟุตบอลระดับท้องถิ่นที่สังกัดสถานีตำรวจภูธรสวรรคโลก
                 อำเภอสวรรคโลก จังหวัดสุโขทัย ก่อตั้งขึ้นเพื่อส่งเสริมกีฬาฟุตบอลในท้องถิ่น
                 และสร้างความสัมพันธ์ที่ดีระหว่างเจ้าหน้าที่ตำรวจกับชุมชน
@@ -45,7 +46,7 @@ export default function AboutPage() {
 
       {/* Coaching Staff */}
       <section className="mb-8">
-        <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+        <h2 className="text-xl font-bold text-text mb-4 flex items-center gap-2">
           <span className="w-1 h-5 bg-primary rounded" />
           ทีมงานบริหารและสตาฟฟ์โค้ช
         </h2>
@@ -61,7 +62,7 @@ export default function AboutPage() {
                   <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
                 </svg>
               </div>
-              <h3 className="text-sm font-bold text-white">{member.nameTh}</h3>
+              <h3 className="text-sm font-bold text-text">{member.nameTh}</h3>
               <p className="text-xs text-primary mt-1">{member.roleTh}</p>
             </div>
           ))}
@@ -70,14 +71,14 @@ export default function AboutPage() {
 
       {/* Venue */}
       <section className="bg-surface border border-border rounded-xl p-6 md:p-8">
-        <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+        <h2 className="text-xl font-bold text-text mb-4 flex items-center gap-2">
           <span className="w-1 h-5 bg-primary rounded" />
           สนามเหย้า
         </h2>
         <div className="grid md:grid-cols-2 gap-6">
           <div className="space-y-3 text-text-muted">
             <p>
-              <strong className="text-white">สนามกีฬาอำเภอสวรรคโลก</strong>
+              <strong className="text-text">สนามกีฬาอำเภอสวรรคโลก</strong>
             </p>
             <p>อำเภอสวรรคโลก จังหวัดสุโขทัย 64110</p>
             <p>สนามหญ้าธรรมชาติ ขนาดมาตรฐาน</p>

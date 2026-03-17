@@ -25,7 +25,7 @@ export default function SquadClient({ players }: { players: Player[] }) {
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
       {/* Header */}
-      <h1 className="text-3xl font-extrabold text-white mb-2">ทีมนักเตะ</h1>
+      <h1 className="text-3xl font-extrabold text-text mb-2">ทีมนักเตะ</h1>
       <p className="text-text-muted mb-6">
         รายชื่อนักเตะสโมสรตำรวจสวรรคโลก เอฟซี ฤดูกาล 2569
       </p>
@@ -40,7 +40,7 @@ export default function SquadClient({ players }: { players: Player[] }) {
               "px-4 py-2 rounded-lg text-sm font-medium transition-colors",
               filter === pf.key
                 ? "bg-primary text-white"
-                : "bg-surface border border-border text-text-muted hover:text-white hover:border-primary/50"
+                : "bg-surface border border-border text-text-muted hover:text-text hover:border-primary/50"
             )}
           >
             {pf.label}
