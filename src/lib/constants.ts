@@ -52,7 +52,7 @@ export const NAV_ITEMS = [
 
 // Club info
 export const CLUB = {
-  name: "ตำรวจสวรรคโลก เอฟซี",
+  name: "Police Sawankhalok FC",
   nameEn: "Police Sawankhalok FC",
   shortName: "SWP",
   founded: "2567",

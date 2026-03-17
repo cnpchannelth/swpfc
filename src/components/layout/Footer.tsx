@@ -19,12 +19,11 @@ export default function Footer() {
               />
               <div>
                 <h3 className="font-bold text-text">{CLUB.name}</h3>
-                <p className="text-sm text-text-muted">{CLUB.nameEn}</p>
+                <p className="text-sm text-text-muted">Sawankhalok, Sukhothai</p>
               </div>
             </div>
             <p className="text-sm text-text-muted">
-              สโมสรฟุตบอลตำรวจสวรรคโลก สังกัดสถานีตำรวจภูธรสวรรคโลก
-              จังหวัดสุโขทัย
+              สังกัดสถานีตำรวจภูธรสวรรคโลก จังหวัดสุโขทัย
             </p>
           </div>
 

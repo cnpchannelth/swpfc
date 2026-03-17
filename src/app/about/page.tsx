@@ -9,7 +9,7 @@ export default async function AboutPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
       <h1 className="text-3xl font-extrabold text-text mb-2">เกี่ยวกับสโมสร</h1>
-      <p className="text-text-muted mb-8">ประวัติและข้อมูลสโมสรตำรวจสวรรคโลก เอฟซี</p>
+      <p className="text-text-muted mb-8">ประวัติและข้อมูลสโมสร Police Sawankhalok FC</p>
 
       {/* Club History */}
       <section className="bg-surface border border-border rounded-xl p-6 md:p-8 mb-8">
@@ -28,7 +28,7 @@ export default async function AboutPage() {
             </h2>
             <div className="space-y-3 text-text-muted leading-relaxed">
               <p>
-                <strong className="text-text">สโมสรฟุตบอลตำรวจสวรรคโลก (Police Sawankhalok FC)</strong>{" "}
+                <strong className="text-text">Police Sawankhalok FC</strong>{" "}
                 เป็นสโมสรฟุตบอลระดับท้องถิ่นที่สังกัดสถานีตำรวจภูธรสวรรคโลก
                 อำเภอสวรรคโลก จังหวัดสุโขทัย ก่อตั้งขึ้นเพื่อส่งเสริมกีฬาฟุตบอลในท้องถิ่น
                 และสร้างความสัมพันธ์ที่ดีระหว่างเจ้าหน้าที่ตำรวจกับชุมชน

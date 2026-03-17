@@ -18,9 +18,9 @@ const oswald = Oswald({
 });
 
 export const metadata: Metadata = {
-  title: "ตำรวจสวรรคโลก เอฟซี | Police Sawankhalok FC",
+  title: "Police Sawankhalok FC",
   description:
-    "เว็บไซต์อย่างเป็นทางการของสโมสรฟุตบอลตำรวจสวรรคโลก จังหวัดสุโขทัย - ข่าวสาร ตารางแข่งขัน ผลการแข่งขัน สถิติ และข้อมูลนักเตะ",
+    "เว็บไซต์อย่างเป็นทางการของ Police Sawankhalok FC จังหวัดสุโขทัย - ข่าวสาร ตารางแข่งขัน ผลการแข่งขัน สถิติ และข้อมูลนักเตะ",
 };
 
 export default async function RootLayout({

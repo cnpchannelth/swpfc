@@ -28,7 +28,7 @@ export default async function AdminDashboardPage() {
   return (
     <div className="p-6 max-w-5xl">
       <h1 className="text-2xl font-extrabold text-text mb-1">ภาพรวม</h1>
-      <p className="text-text-muted text-sm mb-6">ยินดีต้อนรับ แอดมินตำรวจสวรรคโลก เอฟซี</p>
+      <p className="text-text-muted text-sm mb-6">ยินดีต้อนรับ แอดมิน Police Sawankhalok FC</p>
 
       {/* Stats Grid */}
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8">

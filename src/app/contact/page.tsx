@@ -4,7 +4,7 @@ export default function ContactPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
       <h1 className="text-3xl font-extrabold text-text mb-2">ติดต่อเรา</h1>
-      <p className="text-text-muted mb-8">ช่องทางการติดต่อสโมสรตำรวจสวรรคโลก เอฟซี</p>
+      <p className="text-text-muted mb-8">ช่องทางการติดต่อ Police Sawankhalok FC</p>
 
       <div className="grid md:grid-cols-2 gap-6">
         {/* Contact Info */}

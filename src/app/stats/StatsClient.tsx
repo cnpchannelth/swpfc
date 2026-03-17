@@ -54,14 +54,14 @@ export default function StatsClient({
 
   const maxValue = Math.max(...activeTab.list.map(getValue), 1);
 
-  const rankColors = ["bg-yellow-400 text-yellow-900", "bg-gray-300 text-gray-700", "bg-amber-600 text-amber-100"];
+  const rankColors = ["bg-yellow-400/20 text-yellow-400 border border-yellow-400/30", "bg-white/10 text-white/60 border border-white/10", "bg-amber-700/20 text-amber-500 border border-amber-700/30"];
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
       {/* Header */}
       <div className="mb-8">
         <h1 className="text-3xl font-extrabold text-text mb-1">สถิติ</h1>
-        <p className="text-text-muted">ตำรวจสวรรคโลก เอฟซี · ฤดูกาล 2569</p>
+        <p className="text-text-muted">Police Sawankhalok FC · ฤดูกาล 2569</p>
       </div>
 
       {/* Overview Cards */}
@@ -96,7 +96,7 @@ export default function StatsClient({
             className={cn(
               "px-4 py-2 text-sm font-medium rounded-lg transition-all",
               tab === t.key
-                ? "bg-white text-primary shadow-sm border border-border/50"
+                ? "bg-surface text-primary shadow-sm border border-primary/30"
                 : "text-text-muted hover:text-text"
             )}
           >
@@ -144,8 +144,8 @@ export default function StatsClient({
                     <span className="text-xs text-text-muted">{stat.appearances} นัด</span>
                     {tab === "cards" && (
                       <>
-                        {stat.yellowCards > 0 && <span className="text-xs bg-yellow-100 text-yellow-700 px-1.5 py-0.5 rounded font-medium">🟨 {stat.yellowCards}</span>}
-                        {stat.redCards > 0 && <span className="text-xs bg-red-100 text-red-700 px-1.5 py-0.5 rounded font-medium">🟥 {stat.redCards}</span>}
+                        {stat.yellowCards > 0 && <span className="text-xs bg-yellow-400/20 text-yellow-400 px-1.5 py-0.5 rounded font-medium">🟨 {stat.yellowCards}</span>}
+                        {stat.redCards > 0 && <span className="text-xs bg-red-500/20 text-red-400 px-1.5 py-0.5 rounded font-medium">🟥 {stat.redCards}</span>}
                       </>
                     )}
                   </div>

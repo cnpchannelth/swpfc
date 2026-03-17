@@ -67,7 +67,7 @@ export default function SquadClient({ players }: { players: Player[] }) {
           </h1>
           <div className="w-16 h-1 rounded-full" style={{ background: color }} />
           <p className="text-sm text-white/40 mt-3">
-            {players.length} นักเตะ · สโมสรตำรวจสวรรคโลก เอฟซี
+            {players.length} นักเตะ · Police Sawankhalok FC
           </p>
         </div>
       </div>

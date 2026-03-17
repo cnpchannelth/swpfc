@@ -9,19 +9,19 @@
   --color-secondary-dark: #163A6A;
   --color-secondary-light: #2A6BB5;
 
-  /* Light Theme */
-  --color-dark: #F0F4F8;
-  --color-surface: #FFFFFF;
-  --color-surface-light: #F8FAFC;
-  --color-border: #E2E8F0;
+  /* Dark Theme */
+  --color-dark: #0D1117;
+  --color-surface: #161B22;
+  --color-surface-light: #21262D;
+  --color-border: #30363D;
 
   /* Text */
-  --color-text: #1A202C;
-  --color-text-muted: #64748B;
+  --color-text: #F0F6FC;
+  --color-text-muted: #8B949E;
 
   /* Status */
-  --color-success: #16A34A;
-  --color-warning: #D97706;
+  --color-success: #2EA043;
+  --color-warning: #D29922;
   --color-danger: #C41E3A;
 
   /* Fonts */
@@ -44,11 +44,11 @@ body {
   background: var(--color-dark);
 }
 ::-webkit-scrollbar-thumb {
-  background: #CBD5E0;
+  background: #30363D;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #A0AEC0;
+  background: #484F58;
 }
 
 /* Angled section divider */
@@ -123,9 +123,9 @@ body {
 .skeleton {
   background: linear-gradient(
     90deg,
-    #E2E8F0 25%,
-    #EDF2F7 50%,
-    #E2E8F0 75%
+    #21262D 25%,
+    #30363D 50%,
+    #21262D 75%
   );
   background-size: 200% 100%;
   animation: shimmer 1.5s ease-in-out infinite;
